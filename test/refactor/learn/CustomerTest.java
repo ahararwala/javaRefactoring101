@@ -8,10 +8,17 @@ import static org.junit.Assert.assertEquals;
 public class CustomerTest {
 
     private Customer customer;
+    private Movie movieSkyCaptain;
+    private Movie movieRevenant;
+    private Movie movieSkyfall;
 
     @Before
     public void setUp() throws Exception {
         customer = new Customer("Joe");
+
+        movieSkyCaptain = new Movie("Sky Captain", 1);
+        movieRevenant = new Movie("Revenant", 0);
+        movieSkyfall = new Movie("Skyfall", 2);
     }
 
     @Test
@@ -31,8 +38,7 @@ public class CustomerTest {
                 "Amount owed is 15.0\n" +
                 "You earned 2 frequent renter points";
 
-        Movie movie = new Movie("Sky Captain", 1);
-        Rental movieRental = new Rental(movie, 5);
+        Rental movieRental = new Rental(movieSkyCaptain, 5);
         customer.addRental(movieRental);
 
         assertEquals(expectedReport, customer.statement());
@@ -46,13 +52,10 @@ public class CustomerTest {
                 "\tSkyfall\t12.0\n" +
                 "Amount owed is 29.0\n" +
                 "You earned 4 frequent renter points";
-        Movie m1 = new Movie("Sky Captain", 1);
-        Movie m3 = new Movie("Revenant", 0);
-        Movie m4 = new Movie("Skyfall", 2);
 
-        Rental r1 = new Rental(m1, 5);
-        Rental r2 = new Rental(m3, 1);
-        Rental r3 = new Rental(m4, 10);
+        Rental r1 = new Rental(movieSkyCaptain, 5);
+        Rental r2 = new Rental(movieRevenant, 1);
+        Rental r3 = new Rental(movieSkyfall, 10);
 
         customer.addRental(r1);
         customer.addRental(r2);
